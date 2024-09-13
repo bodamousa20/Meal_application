@@ -41,10 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:src="@drawable/notfavicon"
+        android:src="@drawable/favourite"
+        android:tint="#E80F0F"
         app:backgroundTint="@color/off_white"
+        app:elevation="12dp"
         app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|end"
+        app:rippleColor="#E61616" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"

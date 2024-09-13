@@ -10,12 +10,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.meals_app.Data.Meal
 import com.example.meals_app.Data.MealDATA
 import com.example.meals_app.Database.MealsDatabase
 import com.example.meals_app.R
@@ -51,7 +51,7 @@ class MealActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_random_meal)
+        setContentView(R.layout.activity_meal)
         // Find views
         mealNameTextView = findViewById(R.id.meal_name)
         appBarImageView = findViewById(R.id.app_bar_image)
@@ -109,7 +109,7 @@ class MealActivity : AppCompatActivity() {
             if (meal != null) {
                 // Meal is in favorites
                 isFavorite = true
-                favoriteButton.setImageResource(R.drawable.favourite) // Change icon to favorited
+                favoriteButton.setColorFilter(ContextCompat.getColor(this, R.color.primary)) // Change icon color to red
             } else {
                 // Meal is not in favorites
                 isFavorite = false
