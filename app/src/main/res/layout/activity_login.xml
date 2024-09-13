@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    tools:context=".Activity.LoginActivity">
+
+    <Button
+        android:id="@+id/google_btn_login"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="150dp"
+        android:fontFamily="@font/myfont"
+        android:text="Login by Google"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_cover"
+        android:layout_width="312dp"
+        android:layout_height="244dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_application"
+        tools:srcCompat="@drawable/image_application" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="316dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/myfont"
+        android:gravity="center"
+        android:text="Welcome to Meal App"
+        android:textColor="@color/g_black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/google_btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_cover" />
+</androidx.constraintlayout.widget.ConstraintLayout>

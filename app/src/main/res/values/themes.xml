@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--  Base application theme.  -->
+    <style name="Base.Theme.Meals_App" parent="Theme.Material3.Light.NoActionBar">
+        <!--  Customize your light theme here.  -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/accent</item>
+    </style>
+    <style name="Theme.Meals_App" parent="Base.Theme.Meals_App"/>
+    <style name="Theme.App.Splach" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/off_white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/image_application</item>
+    </style>
+</resources>
