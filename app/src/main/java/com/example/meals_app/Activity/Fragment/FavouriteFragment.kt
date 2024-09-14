@@ -13,16 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.meals_app.Activity.MealActivity
 import com.example.meals_app.Adapter.FavouriteAdapter
 import com.example.meals_app.Data.Meal
-import com.example.meals_app.Data.MealDATA
-import com.example.meals_app.Data.MealList
 import com.example.meals_app.Database.MealsDatabase
 import com.example.meals_app.R
-import com.example.meals_app.Retrofit.Retrofit_Helper
 import com.example.meals_app.viewModel.MealViewFactory
 import com.example.meals_app.viewModel.MealViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class FavouriteFragment : Fragment() {
     private lateinit var mealViewModel: MealViewModel
@@ -50,12 +44,12 @@ class FavouriteFragment : Fragment() {
         mealViewModel.getMealLiveData().observe(viewLifecycleOwner, { meals ->
             Log.d("FavouriteFragment", "Meals: $meals")
             recyclerViewSaved.adapter = FavouriteAdapter(meals) { mealId ->
-                fetchMealDetailsAndNavigate(mealId)
+              //  fetchMealDetailsAndNavigate(mealId)
             }
         })
     }
 
-    private fun fetchMealDetailsAndNavigate(mealId: String) {
+    /*private fun fetchMealDetailsAndNavigate(mealId: String) {
 
         val api = Retrofit_Helper.api
         api.getMealByID(mealId).enqueue(object : Callback<MealList> {
@@ -80,7 +74,7 @@ class FavouriteFragment : Fragment() {
                 // Handle failure
             }
         })
-    }
+    }*/
     private fun getIngredientsList(meal: Meal): ArrayList<String> {
         return arrayListOf(
             meal.strIngredient1,

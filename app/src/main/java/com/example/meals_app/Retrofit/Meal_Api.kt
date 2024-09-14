@@ -20,15 +20,15 @@ interface Meal_Api {
     suspend fun getAllCountary() :Countary_list
 
     @GET("filter.php")
-    fun getMealsByCategory(@Query("c") categoryName:String):Call<categoryMeal>
+    suspend fun getMealsByCategory(@Query("c") categoryName:String):categoryMeal
 
     @GET("lookup.php")
-     fun getMealByID(@Query("i") mealid:String): Call<MealList>
+    suspend fun getMealByID(@Query("i") mealid:String): MealList
 
 
 
     @GET("filter.php")
-    fun getMealsByCountary(@Query("a") CountaryName: String) : Call<categoryMeal>
+    suspend fun getMealsByCountary(@Query("a") CountaryName: String) :categoryMeal
 
   @GET("search.php")
     fun searchMeal(@Query("s") mealName:String):Call<MealList>

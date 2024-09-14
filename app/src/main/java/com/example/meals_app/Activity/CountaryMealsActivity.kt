@@ -2,9 +2,11 @@ package com.example.meals_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meals_app.Activity.MealActivity
@@ -13,6 +15,8 @@ import com.example.meals_app.Data.Meal
 import com.example.meals_app.Data.MealList
 import com.example.meals_app.Data.categoryMeal
 import com.example.meals_app.Retrofit.Retrofit_Helper
+import com.example.meals_app.viewModel.CountryMealsViewModel
+import com.example.meals_app.viewModel.HomeViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +25,8 @@ class CountaryMealsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var adapter: MealsAdapter
+    private lateinit var countaryMVVM :CountryMealsViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,61 +34,58 @@ class CountaryMealsActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.RV_MEALS)
         progressBar = findViewById(R.id.PROGRESS_BAR_)
+       // mealCard = findViewById(R.layout.meal_item_card)
+
+        countaryMVVM =  ViewModelProvider(this)[CountryMealsViewModel::class.java]
 
         adapter = MealsAdapter { mealId ->
-            fetchMealDetails(mealId)
+            countaryMVVM.fetchMealDetails(mealId)
+
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         recyclerView.adapter = adapter
 
         // Retrieve country name from intent
-        val countryName = intent.getStringExtra("COUNTRY_NAME") ?: return
+        val countryName = intent.getStringExtra("COUNTRY_NAME")
 
         // Fetch meals by country
-        fetchMealsByCountry(countryName)
+        if (countryName != null) {
+            countaryMVVM.getMealsByCountry(countryName)
+            observeCountryMeal()
+        }
+        observeMealDetails()
+    }
+    private fun observeCountryMeal(){
+        countaryMVVM.CountryLiveData.observe(this,{Meals->
+            adapter.setMeals(Meals)
+            progressBar.visibility  = View.GONE
+        })
     }
 
-    private fun fetchMealsByCountry(country: String) {
-        Retrofit_Helper.api.getMealsByCountary(country).enqueue(object : Callback<categoryMeal> {
-            override fun onResponse(call: Call<categoryMeal>, response: Response<categoryMeal>) {
-                if (response.isSuccessful) {
-                    val meals = response.body()?.meals ?: emptyList()
-                    adapter.setMeals(meals)
-                    progressBar.visibility = View.GONE
-                }
-            }
 
-            override fun onFailure(call: Call<categoryMeal>, t: Throwable) {
-                // Handle error
+    private fun observeMealDetails() {
+        countaryMVVM.CountaryMealDetails.observe(this, { meal ->
+            meal?.let {
+                passMealDetailsToMealActivity(it)
             }
         })
     }
-    private fun fetchMealDetails(mealId: String) {
-        Retrofit_Helper.api.getMealByID(mealId).enqueue(object : Callback<MealList> {
-            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
-                if (response.isSuccessful) {
-                    val meal = response.body()?.meals?.firstOrNull()
-                    meal?.let {
-                        val intent = Intent(this@CountaryMealsActivity, MealActivity::class.java).apply {
-                            putExtra("meal_id", it.idMeal)
-                            putExtra("meal_name", it.strMeal)
-                            putExtra("meal_image", it.strMealThumb)
-                            putExtra("meal_instructions", it.strInstructions)
-                            putExtra("category", it.strCategory)
-                            putExtra("Area", it.strArea)
-                            putExtra("meal_ingredients", getIngredientsList(it))
-                            putExtra("youtube", it.strYoutube)
-                        }
-                        startActivity(intent)
-                    }
-                }
-            }
 
-            override fun onFailure(call: Call<MealList>, t: Throwable) {
-                // Handle error
-            }
-        })
+
+    // Function to pass meal details to MealActivity
+    private fun passMealDetailsToMealActivity(meal: Meal) {
+        val intent = Intent(this, MealActivity::class.java).apply {
+            putExtra("meal_id", meal.idMeal)
+            putExtra("meal_name", meal.strMeal)
+            putExtra("meal_image", meal.strMealThumb)
+            putExtra("meal_instructions", meal.strInstructions)
+            putExtra("category", meal.strCategory)
+            putExtra("Area", meal.strArea)
+            putExtra("meal_ingredients", getIngredientsList(meal))
+            putExtra("youtube", meal.strYoutube)
+        }
+        startActivity(intent)
     }
 
     private fun getIngredientsList(meal: Meal): ArrayList<String> {

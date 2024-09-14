@@ -1,12 +1,10 @@
-package com.example.meals_app.Activity
+package com.example.meals_app.Activity.LoginActivity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.example.meals_app.Activity.Fragment.HomeFragment
 import com.example.meals_app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
