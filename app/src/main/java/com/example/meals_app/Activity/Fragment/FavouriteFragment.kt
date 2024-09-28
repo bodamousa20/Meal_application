@@ -15,11 +15,15 @@ import com.example.meals_app.Adapter.FavouriteAdapter
 import com.example.meals_app.Data.Meal
 import com.example.meals_app.Database.MealsDatabase
 import com.example.meals_app.R
+import com.example.meals_app.Retrofit.Retrofit_Helper
+import com.example.meals_app.viewModel.FavouriteViewModel
+import com.example.meals_app.viewModel.HomeViewModel
 import com.example.meals_app.viewModel.MealViewFactory
 import com.example.meals_app.viewModel.MealViewModel
 
 class FavouriteFragment : Fragment() {
     private lateinit var mealViewModel: MealViewModel
+    private lateinit var FavouriteMealModel: FavouriteViewModel
     private lateinit var recyclerViewSaved: RecyclerView
 
     override fun onCreateView(
@@ -39,42 +43,37 @@ class FavouriteFragment : Fragment() {
         // Get instance from database
         val database = MealsDatabase.getDatabase(requireContext())
         mealViewModel = ViewModelProvider(this, MealViewFactory(database)).get(MealViewModel::class.java)
+        FavouriteMealModel  = ViewModelProvider(this).get(FavouriteViewModel::class.java)
 
         // Observe data and set up the adapter
-        mealViewModel.getMealLiveData().observe(viewLifecycleOwner, { meals ->
+        mealViewModel.getMealLiveData().observe(viewLifecycleOwner) { meals ->
             Log.d("FavouriteFragment", "Meals: $meals")
             recyclerViewSaved.adapter = FavouriteAdapter(meals) { mealId ->
-              //  fetchMealDetailsAndNavigate(mealId)
+                FavouriteMealModel.fetchMealDetails(mealId);
             }
-        })
+        };
+
+        FavouriteMealModel.mealLiveDataFavourite.observe(viewLifecycleOwner){ meals ->
+            passMealDetailsToMealActivity(meals)
+        }
+
+
+    }
+    fun passMealDetailsToMealActivity(meal: Meal) {
+        val intent = Intent(context, MealActivity::class.java).apply {
+            putExtra("meal_id", meal.idMeal)
+            putExtra("meal_name", meal.strMeal)
+            putExtra("meal_image", meal.strMealThumb)
+            putExtra("meal_instructions", meal.strInstructions)
+            putExtra("category", meal.strCategory)
+            putExtra("Area", meal.strArea)
+            putExtra("meal_ingredients", getIngredientsList(meal))
+            putExtra("youtube", meal.strYoutube)
+        }
+        startActivity(intent)
     }
 
-    /*private fun fetchMealDetailsAndNavigate(mealId: String) {
 
-        val api = Retrofit_Helper.api
-        api.getMealByID(mealId).enqueue(object : Callback<MealList> {
-            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
-                val meal = response.body()?.meals?.get(0)
-                if (meal != null) {
-                    val intent = Intent(requireContext(), MealActivity::class.java).apply {
-                        putExtra("meal_id", meal.idMeal)
-                        putExtra("meal_name", meal.strMeal)
-                        putExtra("meal_image", meal.strMealThumb)
-                        putExtra("meal_instructions", meal.strInstructions)
-                        putExtra("category", meal.strCategory)
-                        putExtra("Area", meal.strArea)
-                        putExtra("meal_ingredients", getIngredientsList(meal))
-                        putExtra("youtube", meal.strYoutube)
-                    }
-                    startActivity(intent)
-                }
-            }
-
-            override fun onFailure(call: Call<MealList>, t: Throwable) {
-                // Handle failure
-            }
-        })
-    }*/
     private fun getIngredientsList(meal: Meal): ArrayList<String> {
         return arrayListOf(
             meal.strIngredient1,

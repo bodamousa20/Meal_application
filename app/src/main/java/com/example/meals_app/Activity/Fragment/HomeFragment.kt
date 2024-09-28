@@ -2,6 +2,7 @@ package com.example.meals_app.Activity.Fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.meals_app.Activity.CategoryActivity
-import com.example.meals_app.Activity.LoginActivity
+import com.example.meals_app.Activity.LoginActivity.LoginActivity
 import com.example.meals_app.Activity.MealActivity
 import com.example.meals_app.Adapter.Category.Category_Adapter
 import com.example.meals_app.Adapter.CountaryAdapter
@@ -88,7 +89,7 @@ class HomeFragment : Fragment() {
         // Initialize and observe categories
         setupCategoryRecyclerView()
         homeMvvm.getAllCategory()
-        setupCategoryObserver()
+        setupCategoryAdapter()
         setupCategoryClickListener()
 
         // Initialize the country RecyclerView
@@ -98,16 +99,6 @@ class HomeFragment : Fragment() {
         setupCountryClickListener()
     }
 
-
-   /* private fun putImage(){
-        val googleSignInAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
-        if (googleSignInAccount != null) {
-            val photoUrl = googleSignInAccount.photoUrl
-            Glide.with(this)
-                .load(photoUrl)
-                .into(userImage.findViewById(R.id.userImage))
-        }
-    }*/
 
 
    private fun signOutAndStartSignInActivity() {
@@ -130,8 +121,9 @@ class HomeFragment : Fragment() {
 
     private fun setupCountryClickListener() {
         countaryAdapter.onItemClickListener = { country ->
-            val intent = Intent(activity, CountaryMealsActivity::class.java).apply {
+            val intent = Intent(context, CountaryMealsActivity::class.java).apply {
                 putExtra("COUNTRY_NAME", country.strArea)
+                Log.i("erre", country.strArea)
             }
             startActivity(intent)
         }
@@ -160,7 +152,7 @@ class HomeFragment : Fragment() {
     private fun setupCategoryClickListener() {
         categoryAdapter.onClickedItem = { cat ->
             val intent = Intent(activity, CategoryActivity::class.java).apply {
-                putExtra("Category_name",cat.strCategory)
+                putExtra("Category_name",cat.strCategory) // navigate to category Activity
             }
             startActivity(intent)
         }
@@ -177,7 +169,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupCategoryObserver() {
+    private fun setupCategoryAdapter() {
         homeMvvm.categoryLiveData.observe(viewLifecycleOwner, Observer { categories ->
             categoryAdapter.setCategotyList(categories)  // send data to adapter
             binding.categoryProgressBar.visibility = View.GONE

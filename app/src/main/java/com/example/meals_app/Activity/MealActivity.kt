@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.meals_app.Data.MealDATA
+import com.example.meals_app.Database.MealDATA
 import com.example.meals_app.Database.MealsDatabase
 import com.example.meals_app.R
 import com.example.meals_app.adapters.IngredientsAdapter

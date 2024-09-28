@@ -5,7 +5,6 @@
     import androidx.room.Room
     import androidx.room.RoomDatabase
     import com.example.meals_app.Data.Meal
-    import com.example.meals_app.Data.MealDATA
 
     @Database(entities = [MealDATA::class], version = 1, exportSchema = false)
     abstract class MealsDatabase :RoomDatabase(){

@@ -16,7 +16,7 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
     private var mealsList = ArrayList<Mealcat>()
 
 
-    var onMealClick: ((Mealcat) -> Unit)? = null
+    var onMealClick: ((Mealcat) -> Unit)? = null // define var of Meal cat obj
 
     class CategoryMealsViewModel(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryImageView: ImageView = itemView.findViewById(R.id.meal_image)
@@ -43,7 +43,7 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
                     holder.categoryTextView.text = mealCat.strMeal
 
                     holder.itemView.setOnClickListener {
-                        onMealClick?.invoke(mealCat)
+                        onMealClick?.invoke(mealCat)   // assign to Meal cat to the object
                     }
                 } else {
                     Log.e("CategoryMealsAdapter", "Position $position is out of bounds")

@@ -27,6 +27,7 @@ class CategoryActivity : AppCompatActivity() {
 
 
         var category_name = intent.getStringExtra("Category_name") // cat_name
+
         categoryMealsViewModel.getMealByCatName(category_name!!) // take category Name and put into meal in order call api
 
       //observer
@@ -37,7 +38,7 @@ class CategoryActivity : AppCompatActivity() {
 
 
         //when meal is clicked it take its id and send to Navigate Meals
-        categoryMealsAdapter.onMealClick = { meal ->
+        categoryMealsAdapter.onMealClick = { meal -> // take object of meal and then construct from it id
             categoryMealsViewModel.fetchMealById(meal.idMeal)
         }
       observeMealDetails() //observe Meal and Navigate to Meal Activity

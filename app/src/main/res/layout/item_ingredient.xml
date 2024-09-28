@@ -1,29 +1,42 @@
-<!-- meal_item_card.xml -->
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    card_view:cardBackgroundColor="?attr/colorAccent"
     card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="4dp"
-    card_view:cardBackgroundColor="?attr/colorAccent">
+    card_view:cardElevation="4dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:padding="16dp">
 
+        <!-- Ingredient Image -->
+        <ImageView
+            android:id="@+id/ingredient_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+       />
 
+        <!-- Ingredient Name -->
         <TextView
             android:id="@+id/incredent_txt"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/myfont"
+            android:layout_toEndOf="@id/ingredient_image"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/myfont"
+            android:text="Ingredient Name"/> <!-- Placeholder text, replaced dynamically -->
 
     </RelativeLayout>
 

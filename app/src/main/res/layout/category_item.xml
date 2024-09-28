@@ -6,23 +6,21 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    app:cardElevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="108dp"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/category_image"
-            android:layout_width="0dp"
+            android:layout_width="97dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="6dp"
             android:foregroundGravity="center_horizontal"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/category_txtt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,16 +30,13 @@
             android:id="@+id/category_txtt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="15dp"
             android:fontFamily="@font/myfont"
             android:foregroundGravity="center_horizontal"
             android:gravity="center_horizontal"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/category_image" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

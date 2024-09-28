@@ -40,7 +40,7 @@ class CategoryMealsViewModel: ViewModel() {
         viewModelScope.launch {
            val meal =  Retrofit_Helper.api.getMealsByCategory(catName).meals
             withContext(Dispatchers.Main){
-                categoryMealLiveData.postValue(meal)
+                categoryMealLiveData.postValue(meal) // assign the comming meal data to liveData
             }
 
 
