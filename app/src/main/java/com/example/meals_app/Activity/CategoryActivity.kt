@@ -33,7 +33,7 @@ class CategoryActivity : AppCompatActivity() {
       //observer
         categoryMealsViewModel.categoryMealLiveData.observe(this, Observer { meal ->
             categoryMealsAdapter.setMeal(meal)
-            cat_meals.text =categoryMealsAdapter.getItemCount().toString()  // asign number of items
+            cat_meals.text =category_name.toString()  // asign number of items
         })
 
 
@@ -75,7 +75,10 @@ class CategoryActivity : AppCompatActivity() {
             meal.strIngredient3,
             meal.strIngredient4,
             meal.strIngredient5,
-            meal.strIngredient6
+            meal.strIngredient6,
+            meal.strIngredient7,
+            meal.strIngredient8,
+
         ).filterNotNull() as ArrayList<String>
     }
 

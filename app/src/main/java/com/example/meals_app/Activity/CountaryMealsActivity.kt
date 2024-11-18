@@ -90,12 +90,22 @@ class CountaryMealsActivity : AppCompatActivity() {
 
     private fun getIngredientsList(meal: Meal): ArrayList<String> {
         val ingredients = ArrayList<String>()
+
         meal.strIngredient1?.let { ingredients.add(it) }
         meal.strIngredient2?.let { ingredients.add(it) }
         meal.strIngredient3?.let { ingredients.add(it) }
         meal.strIngredient4?.let { ingredients.add(it) }
         meal.strIngredient5?.let { ingredients.add(it) }
         meal.strIngredient6?.let { ingredients.add(it) }
+        meal.strIngredient7?.let { ingredients.add(it) }
+        meal.strIngredient8?.let { ingredients.add(it) }
+        meal.strIngredient9?.let { ingredients.add(it) }
+        meal.strIngredient10?.let { ingredients.add(it) }
+        meal.strIngredient11?.let { ingredients.add(it) }
+        meal.strIngredient12?.let { ingredients.add(it) }
+        meal.strIngredient13?.let { ingredients.add(it) }
+        meal.strIngredient14?.let { ingredients.add(it) }
+        meal.strIngredient15?.let { ingredients.add(it) }
         return ingredients
     }
 }

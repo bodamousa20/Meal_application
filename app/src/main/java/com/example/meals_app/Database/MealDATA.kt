@@ -8,5 +8,6 @@ class MealDATA (
     @PrimaryKey
     val idMeal: String,
     val strMeal: String,
-    val strMealThumb: String
+    val strMealThumb: String,
+    val userId: String
     )

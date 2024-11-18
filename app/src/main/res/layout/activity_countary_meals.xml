@@ -9,11 +9,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RV_MEALS"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="396dp"
+        android:layout_height="679dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,4 +29,5 @@
         app:layout_constraintEnd_toEndOf="@+id/RV_MEALS"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/RV_MEALS" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@
         android:layout_height="64dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="148dp"
         android:fontFamily="@font/myfont"
         android:text="Login by Google"
         android:textSize="20sp"
@@ -25,6 +25,7 @@
 
     <ImageView
         android:id="@+id/image_cover"
+
         android:layout_width="312dp"
         android:layout_height="244dp"
         android:layout_marginStart="130dp"
@@ -37,6 +38,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/image_application"
         tools:srcCompat="@drawable/image_application" />
+
+    <Button
+        android:id="@+id/guest_button"
+        android:fontFamily="@font/myfont"
+        android:layout_width="258dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="48dp"
+        android:text="Continue as Guest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/google_btn_login"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView2"

@@ -73,7 +73,6 @@ class FavouriteFragment : Fragment() {
         startActivity(intent)
     }
 
-
     private fun getIngredientsList(meal: Meal): ArrayList<String> {
         return arrayListOf(
             meal.strIngredient1,
@@ -81,7 +80,10 @@ class FavouriteFragment : Fragment() {
             meal.strIngredient3,
             meal.strIngredient4,
             meal.strIngredient5,
-            meal.strIngredient6
+            meal.strIngredient6,
+            meal.strIngredient7,
+            meal.strIngredient8,
+
         ).filterNotNull() as ArrayList<String>
     }
 

@@ -14,8 +14,8 @@ import com.example.meals_app.Activity.MealActivity
 import com.example.meals_app.Adapter.SearchMealsAdapter
 import com.example.meals_app.Data.Meal
 import com.example.meals_app.ViewModel.SearchViewModel
-
 import com.example.meals_app.databinding.FragmentSearchBinding
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -96,6 +96,9 @@ private fun getIngredientsList(meal: Meal): ArrayList<String> {
         meal.strIngredient3,
         meal.strIngredient4,
         meal.strIngredient5,
-        meal.strIngredient6
+        meal.strIngredient6,
+        meal.strIngredient7,
+        meal.strIngredient8,
+
     ).filterNotNull() as ArrayList<String>
 }

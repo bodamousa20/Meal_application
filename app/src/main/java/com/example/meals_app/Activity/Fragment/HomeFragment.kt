@@ -202,6 +202,8 @@ class HomeFragment : Fragment() {
         meal.strIngredient4?.let { ingredients.add(it) }
         meal.strIngredient5?.let { ingredients.add(it) }
         meal.strIngredient6?.let { ingredients.add(it) }
+        meal.strIngredient7?.let { ingredients.add(it) }
+        meal.strIngredient8?.let { ingredients.add(it) }
         return ingredients
     }
 
